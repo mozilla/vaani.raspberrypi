@@ -1,0 +1,5 @@
+{
+  "consumerKey" : "<key>",
+  "consumerSecret" : "<secret>",
+  "sandbox" : true
+}

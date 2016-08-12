@@ -1,0 +1,21 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+[Unit]
+Description=Vaani Setup Server
+After=network.target
+
+[Service]
+Type=simple
+StandardOutput=journal
+StandardError=journal
+# Edit this line, if needed, to specify where you installed the server
+WorkingDirectory=/opt/vaani.setup
+# Edit this line, if needed, to set the correct path to node
+ExecStart=/usr/local/bin/node index.js
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
