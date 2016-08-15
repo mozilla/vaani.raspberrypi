@@ -15,6 +15,12 @@ cmakev=$cmakeva.$cmakevb
 
 cd /opt
 
+NPMRCFILE="/root/.npmrc"
+NPMRCSTR="unsafe-perm = true"
+if ! grep -q $NPMRCSTR $NPMRCFILE; then
+   echo $NPMRCSTR >> $NPMRCFILE
+fi
+
 # install the various packages and build tools we'll need
 apt-get update
 apt-get install -y python-dev autoconf automake libtool bison
