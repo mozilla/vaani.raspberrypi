@@ -17,5 +17,5 @@ ln -s /boot/config/secret.json secret.json
 export PKG_CONFIG_PATH=/opt/sphinxbase:/opt/pocketsphinx:/usr/local/lib/pkgconfig
 npm install
 
-mkdir /lib/systemd/system/vaani.service.d
+mkdir -p /lib/systemd/system/vaani.service.d
 cp $src/vaani.service  /lib/systemd/system
