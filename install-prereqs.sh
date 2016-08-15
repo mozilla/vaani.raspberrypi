@@ -7,9 +7,9 @@ set -e
 
 swigv="3.0.10"
 pcrev="8.39"
-cmakeva="3.6"
 soxv="14.4.2"
 nodev="v4.4.7"
+cmakeva="3.6"
 cmakevb="0"
 cmakev=$cmakeva.$cmakevb
 
@@ -17,17 +17,17 @@ cd /opt
 
 # install the various packages and build tools we'll need
 apt-get update
-apt-get install python-dev autoconf automake libtool bison
+apt-get install -y python-dev autoconf automake libtool bison
 
 # download and compile a recent version of swig.
 # You can change the version number if there is a newer release
-wget  http://prdownloads.sourceforge.net/swig/swig-$swigv.tar.gz
+wget http://prdownloads.sourceforge.net/swig/swig-$swigv.tar.gz
 tar xf swig-$swigv.tar.gz
 cd swig-$swigv/
 wget  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$pcrev.tar.gz
 bash Tools/pcre-build.sh
 ./configure
-make
+make -j 4
 make install
 cd ..
 rm -r swig-$swigv swig-$swigv.tar.gz
@@ -38,7 +38,7 @@ wget --no-check-certificate https://cmake.org/files/v$cmakeva/cmake-$cmakev.tar.
 tar xf cmake-$cmakev.tar.gz
 cd cmake-$cmakev
 ./bootstrap
-make
+make -j 4
 make install
 cd ..
 rm -r cmake-$cmakev cmake-$cmakev.tar.gz
@@ -47,7 +47,7 @@ rm -r cmake-$cmakev cmake-$cmakev.tar.gz
 git clone https://github.com/mozilla/sphinxbase.git
 cd sphinxbase
 ./autogen.sh
-make
+make -j 4
 make install
 cd ..
 
@@ -55,7 +55,7 @@ cd ..
 git clone https://github.com/mozilla/pocketsphinx.git
 cd pocketsphinx
 ./autogen.sh
-make
+make -j 4
 make install
 cd ..
 
@@ -71,7 +71,7 @@ wget --no-check-certificate https://sourceforge.net/projects/sox/files/sox/$soxv
 tar xf sox-$soxv.tar.gz
 cd sox-$soxv
 ./configure
-make -s
+make -j 4 -s
 make install
 cd ..
 rm -rf sox-$soxv.tar.gz sox-$soxv
