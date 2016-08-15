@@ -12,21 +12,26 @@ rm -rf vaani.setup
 git clone https://github.com/mozilla/vaani.setup.git
 cd vaani.setup
 
+apt-get install -y hostapd
+apt-get install -y udhcpd
+systemctl disable hostapd
+systemctl disable udhcpd
+
+ln -s /boot/config/evernoteConfig.json evernoteConfig.json
 export PKG_CONFIG_PATH=/opt/sphinxbase:/opt/pocketsphinx
 npm install
 
-cp $src/evernoteConfig.json .
-systemctl disable mdns
-systemctl stop mdns
+HAPDFILE="/etc/default/hostapd"
+HAPDSTR="DAEMON_CONF=\"/etc/hostapd/hostapd.conf\""
+if ! grep -q $HAPDSTR $HAPDFILE; then
+   echo $HAPDSTR >> $HAPDFILE
+fi
 
-opkg install avahi
+sed -i '/^DHCPD_ENABLED="no"/s/^/#/' /etc/default/udhcpd
 
 cp config/hostapd.conf /etc/hostapd/hostapd.conf
 cp $src/udhcpd-for-hostapd.service /lib/systemd/system/udhcpd-for-hostapd.service
-cp config/udhcpd.conf /etc/hostapd/udhcpd-for-hostapd.conf
+cp config/udhcpd.conf /etc/udhcp.conf
 cp $src/wpa_supplicant.conf /etc/wpa_supplicant/
 cp $src/vaani-setup.service /lib/systemd/system
 systemctl enable vaani-setup
-
-echo "Rebooting..."
-reboot
