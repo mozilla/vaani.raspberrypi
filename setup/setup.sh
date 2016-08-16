@@ -30,8 +30,7 @@ fi
 sed -i '/^DHCPD_ENABLED="no"/s/^/#/' /etc/default/udhcpd
 
 cp config/hostapd.conf /etc/hostapd/hostapd.conf
-cp $src/udhcpd-for-hostapd.service /lib/systemd/system/udhcpd-for-hostapd.service
 cp config/udhcpd.conf /etc/udhcp.conf
-cp $src/wpa_supplicant.conf /etc/wpa_supplicant/
 cp $src/vaani-setup.service /lib/systemd/system
+
 systemctl enable vaani-setup
