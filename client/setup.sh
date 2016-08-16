@@ -13,6 +13,7 @@ git clone https://github.com/mozilla/vaani.client/
 cd vaani.client
 git checkout deployed
 
+cp $src/.vaanirc .
 ln -s /boot/config/secret.json secret.json
 export PKG_CONFIG_PATH=/opt/sphinxbase:/opt/pocketsphinx:/usr/local/lib/pkgconfig
 npm install
