@@ -64,7 +64,7 @@ make install
 cd ..
 
 # Get Mozilla's version of pocketsphinx and build it
-rm -rf sphinxbase
+rm -rf pocketsphinx
 git clone https://github.com/mozilla/pocketsphinx.git
 cd pocketsphinx
 ./autogen.sh
