@@ -13,24 +13,30 @@ cmakeva="3.6"
 cmakevb="0"
 cmakev=$cmakeva.$cmakevb
 
-cd /opt
+# Updating system clock. This avoids complaints about unhealthy configurations.
+/etc/init.d/ntp stop
+ntpd -q -g
+/etc/init.d/ntp start
 
+# Renaming the system to "vaani" - now one can connect to "vaani.local"
+sed -i -- 's/raspberrypi/vaani/g' /etc/hostname /etc/hosts
+
+# Default ALSA card should be 1 (the USB one)
+sed -i -- 's/defaults\.ctl\.card\ 0/defaults\.ctl\.card\ 1/g' /usr/share/alsa/alsa.conf
+sed -i -- 's/defaults\.pcm\.card\ 0/defaults\.pcm\.card\ 1/g' /usr/share/alsa/alsa.conf
+
+# Install the various packages and build tools we'll need
+apt-get update
+apt-get install -y python-dev autoconf automake libtool bison
+
+# Allowing root to do npm builds
 NPMRCFILE="/root/.npmrc"
 NPMRCSTR="unsafe-perm = true"
 if ! grep -q $NPMRCSTR $NPMRCFILE; then
    echo $NPMRCSTR >> $NPMRCFILE
 fi
 
-/etc/init.d/ntp stop
-ntpd -q -g
-/etc/init.d/ntp start
-
-# Renaming the system
-sed -i -- 's/raspberrypi/vaani/g' /etc/hostname /etc/hosts
-
-# Install the various packages and build tools we'll need
-apt-get update
-apt-get install -y python-dev autoconf automake libtool bison
+cd /opt
 
 # Download and compile a recent version of swig.
 # You can change the version number if there is a newer release
