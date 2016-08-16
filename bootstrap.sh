@@ -16,3 +16,4 @@ cd vaani.raspberrypi
 
 ./install-prereqs.sh
 ./setup.sh
+./clean.sh
