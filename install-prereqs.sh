@@ -78,7 +78,11 @@ cd ..
 # We set pkg_config so that node-pocketsphinx can be built
 export PKG_CONFIG_PATH=/opt/sphinxbase:/opt/pocketsphinx
 export LD_LIBRARY_PATH=/usr/local/lib/
-echo "/usr/local/lib/" >> /etc/ld.so.conf
+LDFILE="/etc/ld.so.conf"
+LDSTR="/usr/local/lib/"
+if ! grep -q $LDSTR $LDFILE then
+    echo $LDSTR >> $LDFILE
+fi
 ldconfig
 
 # SOX
