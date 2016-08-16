@@ -25,6 +25,9 @@ fi
 ntpd -q -g
 /etc/init.d/ntp start
 
+# Renaming the system
+sed -i -- 's/raspberrypi/vaani/g' /etc/hostname /etc/hosts
+
 # Install the various packages and build tools we'll need
 apt-get update
 apt-get install -y python-dev autoconf automake libtool bison
