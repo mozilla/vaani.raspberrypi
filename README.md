@@ -66,4 +66,5 @@ Finally you can start the setup process by:
 wget https://raw.githubusercontent.com/mozilla/vaani.raspberrypi/master/bootstrap.sh
 sudo bash bootstrap.sh
 ```
-This will take quite a while.
+This will take quite a while. Once finished, you can reboot the Pi and/or save
+and distribute an image of the SD card.
