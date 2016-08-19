@@ -89,7 +89,7 @@ export PKG_CONFIG_PATH=/opt/sphinxbase:/opt/pocketsphinx
 export LD_LIBRARY_PATH=/usr/local/lib/
 LDFILE="/etc/ld.so.conf"
 LDSTR="/usr/local/lib/"
-if ! grep -q $LDSTR $LDFILE then
+if [ ! grep -q $LDSTR $LDFILE ]; then
     echo $LDSTR >> $LDFILE
 fi
 ldconfig
