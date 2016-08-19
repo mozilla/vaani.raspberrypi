@@ -13,3 +13,5 @@ rm -rf sphinxbase
 rm -rf pocketsphinx
 rm -rf sox-*
 rm -rf node-*
+
+cat /dev/zero > zero ; sync; rm zero
