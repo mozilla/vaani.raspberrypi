@@ -7,7 +7,6 @@ set -e
 
 echo "deb http://mirror.netcologne.de/raspbian/raspbian/ jessie main contrib non-free rpi" > /etc/apt/sources.list
 apt-get update
-apt-get dist-upgrade -y
 apt-get install -y git
 
 cd /opt
