@@ -11,7 +11,7 @@ Type=simple
 StandardOutput=journal
 StandardError=journal
 WorkingDirectory=/opt/git-auto-updater
-ExecStart=/opt/git-auto-updater/bin/git-auto-updater -r https://github.com/mozilla/vaani.client -b deployed -p /opt/vaani.client -f 5 -- bash /opt/vaani.raspberrypi/client/update.sh
+ExecStart=/opt/git-auto-updater/bin/git-auto-updater -r https://github.com/mozilla/vaani.client -b deployed -p /opt/vaani.client -t 0200 -e 1 -- bash /opt/vaani.raspberrypi/client/update.sh
 
 Restart=always
 RestartSec=10s
