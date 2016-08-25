@@ -9,4 +9,5 @@ cd /opt/vaani.client
 export PKG_CONFIG_PATH=/opt/sphinxbase:/opt/pocketsphinx
 #npm install
 
+systemctl --system set-environment VAANI_BOOTS=$1
 systemctl restart vaani
