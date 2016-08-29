@@ -15,6 +15,7 @@ cmakev=$cmakeva.$cmakevb
 
 # Updating system clock. This avoids complaints about unhealthy configurations.
 /etc/init.d/ntp stop
+cp /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 ntpd -q -g
 /etc/init.d/ntp start
 
